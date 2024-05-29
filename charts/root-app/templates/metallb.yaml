@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: metallb
+  namespace: argocd
+spec:
+  destination:
+    namespace: mmetallb-system
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: manifests/metallb
+    repoURL: https://github.com/beninanutshell/wam-argocd-app-of-apps.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
