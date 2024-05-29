@@ -1,19 +1,24 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argo-cd
+  name: prometheus
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    repoURL: https://github.com/beninanutshell/wam-argocd-app-of-apps.git
-    path: charts/argo-cd
-    targetRevision: HEAD
+    repoURL: https://prometheus-community.github.io/helm-charts
+    chart: prometheus
+    targetRevision: 25.21.0
+    helm:
+      values: |
+        pushgateway:
+          enabled: false
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: prometheus
   syncPolicy:
     automated:
+      prune: true
       selfHeal: true
