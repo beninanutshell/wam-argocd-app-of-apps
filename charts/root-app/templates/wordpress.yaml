@@ -2,18 +2,16 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: wordpress
+  namespace: argocd
 spec:
   destination:
-    name: ""
     namespace: wordpress
-    server: "https://kubernetes.default.svc"
-  source:
-    path: ""
-    repoURL: "https://charts.bitnami.com/bitnami"
-    targetRevision: "HEAD"
-    chart: wordpress
-  sources: []
+    server: https://kubernetes.default.svc
   project: default
+  source:
+    repoURL: https://charts.bitnami.com/bitnami
+    targetRevision: HEAD
+    chart: wordpress
   syncPolicy:
     automated:
       selfHeal: true
