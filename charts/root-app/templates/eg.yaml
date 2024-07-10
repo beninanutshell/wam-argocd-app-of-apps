@@ -9,9 +9,9 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    chart: envoyproxy/gateway-helm
-    repoURL: oci://docker.io/
-    #targetRevision: v0.6.0
+    chart: gateway-helm
+    repoURL: oci://docker.io/envoyproxy
+    targetRevision: v0.6.0
   syncPolicy:
     automated:
       selfHeal: true
