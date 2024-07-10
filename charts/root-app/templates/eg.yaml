@@ -10,7 +10,7 @@ spec:
   project: default
   source:
     chart: gateway-helm
-    repoURL: oci://docker.io/envoyproxy
+    repoURL: docker.io/envoyproxy
     targetRevision: v0.6.0
   syncPolicy:
     automated:
