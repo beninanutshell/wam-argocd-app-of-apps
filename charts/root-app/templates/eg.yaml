@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: envoy-gateway-system
+  namespace: argocd
+spec:
+  destination:
+    namespace: envoy-gateway-system
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    chart: gateway-helm
+    repoURL: oci://docker.io/envoyproxy
+    targetRevision: v0.6.0
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
